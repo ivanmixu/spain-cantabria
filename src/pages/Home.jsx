@@ -6,6 +6,7 @@ import BenefitsSection from '../components/BenefitsSection';
 import WineSection from '../components/WineSection';
 import GastronomySection from '../components/GastronomySection';
 import AtlanticTourismSection from '../components/AtlanticTourismSection';
+import CantabrianParadiseSection from '../components/CantabrianParadiseSection';
 
 function Home() {
   return (
@@ -17,6 +18,7 @@ function Home() {
       <WineSection/>
       <GastronomySection/>
       <AtlanticTourismSection/>
+      <CantabrianParadiseSection/>
       {/* Aquí puedes agregar más secciones de tu página de inicio */}
     </div>
   )

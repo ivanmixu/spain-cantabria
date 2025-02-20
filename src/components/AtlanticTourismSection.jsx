@@ -1,224 +1,156 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  Mountain, 
-  Waves, 
-  Trees, 
-  Wind, 
-  Compass, 
-  MapPin, 
-  Footprints 
-} from 'lucide-react';
+import { motion } from 'framer-motion';
+import { ArrowRight } from 'lucide-react';
+import playa from '../assets/playa-cantabrica.jpg';
+import restaurantes from '../assets/restaurantes.jpg';
+import montañas from '../assets/picos-europa.jpg';
+import vinos from '../assets/ribera.jpg';
 
-// Imagen imports
-import beachImage from '../assets/playa-cantabrica.jpg';
-import mountainsImage from '../assets/picos-europa.jpg';
-import hikingImage from '../assets/senderismo.jpg';
-import naturalParkImage from '../assets/parque-natural.jpg';
-import outdoorImage from '../assets/actividades-aire-libre.jpg';
+const CantabriaExperience = () => {
+  const [hoveredImage, setHoveredImage] = useState(null);
 
-const tourismCategories = [
-  {
-    id: 'beaches',
-    icon: <Waves className="w-8 h-8" />,
-    title: 'Playas Vírgenes',
-    subtitle: 'El Paraíso Atlántico',
-    description: 'Descubre calas escondidas y playas vírgenes que desafían la imaginación. Acantilados escarpados se funden con aguas cristalinas, creando paisajes que parecen salidos de un sueño.',
-    highlights: [
-      'Más de 300 km de costa inexplorada',
-      'Acantilados espectaculares',
-      'Playas de arena dorada y agua turquesa'
-    ],
-    image: beachImage
-  },
-  {
-    id: 'mountains',
-    icon: <Mountain className="w-8 h-8" />,
-    title: 'Picos de Europa',
-    subtitle: 'Cumbres Legendarias',
-    description: 'Un macizo montañoso que desafía los límites de la naturaleza. Los Picos de Europa son un santuario de biodiversidad, con paisajes que cambian desde bosques verdes hasta cumbres nevadas.',
-    highlights: [
-      'Segundo macizo montañoso más alto de Europa',
-      'Ecosistemas únicos',
-      'Rutas de montaña para todos los niveles'
-    ],
-    image: mountainsImage
-  },
-  {
-    id: 'hiking',
-    icon: <Footprints className="w-8 h-8" />,
-    title: 'Rutas de Senderismo',
-    subtitle: 'Senderos que Narran Historias',
-    description: 'Caminos ancestrales que traversan paisajes de incomparable belleza. Cada ruta es un viaje a través de la historia, la cultura y la naturaleza más pura del norte de España.',
-    highlights: [
-      'Más de 500 km de rutas señalizadas',
-      'Caminos de Santiago alternativos',
-      'Paisajes que cambian con cada paso'
-    ],
-    image: hikingImage
-  },
-  {
-    id: 'naturalParks',
-    icon: <Trees className="w-8 h-8" />,
-    title: 'Parques Naturales',
-    subtitle: 'Santuarios de Biodiversidad',
-    description: 'Espacios protegidos que guardan los secretos de la naturaleza más pura. Cada parque es un mundo en miniatura, donde la vida silvestre y los paisajes más espectaculares se dan la mano.',
-    highlights: [
-      'Más de 10 parques naturales',
-      'Fauna y flora únicas',
-      'Conservación medioambiental'
-    ],
-    image: naturalParkImage
-  },
-  {
-    id: 'outdoorActivities',
-    icon: <Wind className="w-8 h-8" />,
-    title: 'Aventura al Aire Libre',
-    subtitle: 'Experiencias sin Límites',
-    description: 'Un paraíso para los amantes de la aventura. Desde el surf en aguas bravas hasta el parapente sobre acantilados, aquí cada día es una invitación a vivir experiencias únicas.',
-    highlights: [
-      'Surf, kayak, escalada',
-      'Rutas de BTT',
-      'Parapente y deportes de aventura'
-    ],
-    image: outdoorImage
-  }
-];
-
-const AtlanticTourismSection = () => {
-  const [activeCategory, setActiveCategory] = useState(tourismCategories[0]);
+  const experiences = [
+    {
+      id: 'costa',
+      title: 'Playas Vírgenes',
+      subtitle: 'MAR CANTÁBRICO',
+      description: 'Donde el mar escribe poemas en la arena y los acantilados guardan secretos milenarios. Descubre calas inexploradas que parecen sacadas de un sueño.',
+      image: playa
+    },
+    {
+      id: 'gastronomia',
+      title: 'Alta Gastronomía',
+      subtitle: 'ESTRELLAS DEL NORTE',
+      description: 'Un festín para los sentidos donde cada plato es una obra maestra. Desde estrellas Michelin hasta tabernas centenarias, el norte es el destino gastronómico por excelencia.',
+      image: restaurantes
+    },
+    {
+      id: 'montana',
+      title: 'Picos de Europa',
+      subtitle: 'CUMBRES LEGENDARIAS',
+      description: 'Donde las montañas tocan el cielo y cada sendero cuenta una historia. Una aventura que desafía los límites de lo posible.',
+      image: montañas
+    },
+    {
+      id: 'vinos',
+      title: 'Vinos Exclusivos',
+      subtitle: 'TESOROS LÍQUIDOS',
+      description: 'Bodegas que son templos del tiempo, donde cada copa cuenta historias de pasión y tradición. Una experiencia que despierta todos los sentidos.',
+      image: vinos
+    }
+  ];
 
   return (
-    <section className="min-h-screen bg-[#0A2342] text-white font-['Urbanist'] relative overflow-hidden flex items-center">
-      {/* Decorative Background */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center opacity-10" 
-        style={{ 
-          backgroundImage: `url(${activeCategory.image})`,
-          filter: 'blur(100px)'
-        }}
-      />
-
-      {/* Main Content Container */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 lg:px-8 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-          {/* Left Column - Navigation and Description */}
-          <div className="space-y-8">
-            {/* Section Header */}
-            <motion.div 
+    <div className="h-screen bg-stone-100 font-light overflow-hidden">
+      <div className="h-full flex flex-col md:flex-row">
+        {/* Left Content */}
+        <div className="w-full md:w-1/2 p-4 md:p-8 lg:p-12 flex flex-col justify-between relative">
+          {/* Top Content */}
+          <div className="space-y-4 md:space-y-6 lg:space-y-8 max-w-xl">
+            <motion.span
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
+              className="text-sm tracking-[0.3em] text-stone-500 block"
             >
-              <span className="text-blue-300 text-base tracking-wide uppercase block mb-3">
-                Descubre el Norte
-              </span>
-              <h1 className="text-5xl lg:text-6xl xl:text-7xl font-light mb-5">
-                Paraíso Atlántico
-              </h1>
-              <p className="text-lg text-blue-100 max-w-xl mb-8">
-                Un territorio donde la naturaleza escribe sus propias historias, donde cada paisaje es una invitación a la aventura y cada rincón guarda un secreto por descubrir.
-              </p>
-            </motion.div>
+              BIENVENIDO AL NORTE
+            </motion.span>
 
-            {/* Category Navigation */}
-            <div className="space-y-4">
-              {tourismCategories.map((category) => (
-                <motion.button
-                  key={category.id}
-                  onClick={() => setActiveCategory(category)}
-                  className={`
-                    w-full text-left px-5 py-3 rounded-xl transition-all duration-300 
-                    ${activeCategory.id === category.id 
-                      ? 'bg-white/10 border border-white/20' 
-                      : 'hover:bg-white/5'}
-                    flex items-center gap-4 group
-                  `}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <div className={`
-                    p-2 rounded-full transition-colors duration-300
-                    ${activeCategory.id === category.id 
-                      ? 'bg-white/20' 
-                      : 'group-hover:bg-white/10'}
-                  `}>
-                    {category.icon}
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-light mb-1">{category.title}</h3>
-                    <p className="text-xs text-blue-200 opacity-70">
-                      {category.subtitle}
-                    </p>
-                  </div>
-                </motion.button>
-              ))}
-            </div>
+            <motion.h1 
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="text-4xl md:text-5xl lg:text-7xl tracking-tight font-extralight"
+            >
+              CANTABRIA
+            </motion.h1>
+
+            <motion.p 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.2 }}
+              className="text-base md:text-lg lg:text-xl leading-relaxed text-stone-600 pl-6 border-l border-stone-300"
+            >
+              Imagina un lugar donde el tiempo se detiene entre montañas majestuosas 
+              y playas vírgenes. Donde cada comida es una experiencia sublime, 
+              cada copa de vino cuenta una historia centenaria, y cada amanecer 
+              promete una nueva aventura. Bienvenido al norte, donde los sueños 
+              no solo se cumplen, se superan.
+            </motion.p>
+
+            <motion.button
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+              className="group flex items-center gap-4 text-lg hover:gap-6 transition-all duration-300 relative pl-6"
+            >
+              <span className="absolute left-0 top-1/2 w-4 h-[1px] bg-black transform -translate-y-1/2" />
+              Descubre el Norte
+              <ArrowRight className="transition-transform group-hover:translate-x-2" />
+            </motion.button>
           </div>
 
-          {/* Right Column - Active Category Details */}
-          <AnimatePresence mode="wait">
-            <motion.div 
-              key={activeCategory.id}
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -50 }}
-              transition={{ duration: 0.5 }}
-              className="bg-white/5 backdrop-blur-md rounded-3xl overflow-hidden border border-white/10 shadow-xl"
-            >
-              {/* Image Container */}
-              <div className="w-full aspect-video relative overflow-hidden">
-                <img
-                  src={activeCategory.image}
-                  alt={activeCategory.title}
-                  className="absolute inset-0 w-full h-full object-cover"
+          {/* Bottom Content - Hover Information */}
+          <motion.div 
+            className="max-w-xl hidden lg:block"
+            animate={{ 
+              opacity: hoveredImage ? 1 : 0,
+              y: hoveredImage ? 0 : 20 
+            }}
+            transition={{ duration: 0.3 }}
+          >
+            {hoveredImage && (
+              <div className="space-y-4 pl-6 border-l border-stone-300">
+                <span className="text-sm tracking-[0.2em] text-stone-500 block">
+                  {hoveredImage.subtitle}
+                </span>
+                <h2 className="text-3xl font-light">
+                  {hoveredImage.title}
+                </h2>
+                <p className="text-stone-600 leading-relaxed">
+                  {hoveredImage.description}
+                </p>
+              </div>
+            )}
+          </motion.div>
+        </div>
+
+        {/* Right Content - Image Grid */}
+        <div className="w-full md:w-1/2 h-[50vh] md:h-full p-2 md:p-4">
+          <div className="grid grid-cols-2 grid-rows-2 gap-2 md:gap-4 h-full">
+            {experiences.map((exp) => (
+              <motion.div
+                key={exp.id}
+                className="relative rounded-lg overflow-hidden cursor-pointer group"
+                onMouseEnter={() => setHoveredImage(exp)}
+                onMouseLeave={() => setHoveredImage(null)}
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.3 }}
+              >
+                <div 
+                  className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+                  style={{ backgroundImage: `url(${exp.image})` }}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-                <div className="absolute bottom-6 left-6 flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full">
-                  <MapPin className="w-5 h-5 text-white" />
-                  <span className="text-white text-sm">Norte de España</span>
-                </div>
-              </div>
-
-              {/* Category Content */}
-              <div className="p-6 space-y-5">
-                <div>
-                  <h2 className="text-2xl font-light mb-3">{activeCategory.title}</h2>
-                  <p className="text-blue-100 mb-4 text-sm">{activeCategory.description}</p>
-                </div>
                 
-                {/* Highlights */}
-                <div className="space-y-2">
-                  {activeCategory.highlights.map((highlight, index) => (
-                    <div 
-                      key={index} 
-                      className="flex items-center gap-3 text-blue-200"
-                    >
-                      <Compass className="w-4 h-4 text-blue-400 flex-shrink-0" />
-                      <span className="text-xs">{highlight}</span>
-                    </div>
-                  ))}
-                </div>
+                <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
-                {/* Call to Action */}
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="w-full py-3 bg-white/10 border border-white/20 rounded-full 
-                  hover:bg-white/20 transition-all flex items-center justify-center gap-3 
-                  text-white group mt-4"
-                >
-                  Explorar Experiencia
-                  <span className="transform transition-transform group-hover:translate-x-1">
-                    →
-                  </span>
-                </motion.button>
-              </div>
-            </motion.div>
-          </AnimatePresence>
+                {/* Title Bar */}
+                <div className="absolute bottom-0 left-0 right-0 p-3 md:p-4 lg:p-6 
+                              bg-gradient-to-t from-black/60 to-transparent">
+                  <div>
+                    <span className="text-sm tracking-[0.2em] text-white/80 block mb-2">
+                      {exp.subtitle}
+                    </span>
+                    <h3 className="text-base md:text-lg lg:text-xl font-light tracking-wide text-white">
+                      {exp.title}
+                    </h3>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 
-export default AtlanticTourismSection;
+export default CantabriaExperience;
